@@ -1,1 +1,30 @@
-.idea/*
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Intellij
+.idea
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# Inclusions
+!lib/**
+
+# Compiled Files
+*.class
+bin/
+build/
+/bin1/
+java/build/**
+
+JavaEncryptionAlgorithms/.idea
+JavaEncryptionAlgorithms/target
+JavaEncryptionAlgorithms/src/main/resources/
