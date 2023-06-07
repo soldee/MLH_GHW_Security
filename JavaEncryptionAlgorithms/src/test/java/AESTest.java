@@ -1,9 +1,5 @@
 import com.soldee.mlh.AESEncryption;
 import org.junit.Test;
-import org.junit.runner.Description;
-import org.junit.runner.Result;
-import org.junit.runner.notification.RunListener;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
@@ -11,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import static org.junit.Assert.*;
 
-public class AESTest extends RunListener {
+public class AESTest {
 
     private final URL path;
 
@@ -36,15 +32,14 @@ public class AESTest extends RunListener {
         byte[] inDecrypted = Files.readAllBytes(new File(path.getPath()+"/decrypted.txt").toPath());
 
         assertArrayEquals(inOriginal, inDecrypted);
+        cleanup();
     }
 
-
-    @Override
-    public void testRunFinished(Result result) throws Exception {
-        new File(path.getPath()+"/keyFile").delete();
-        new File(path.getPath()+"/text.txt").delete();
-        new File(path.getPath()+"/encrypted.txt").delete();
-        new File(path.getPath()+"/decrypted.txt").delete();
+    public void cleanup() {
+        try { new File(path.getPath()+"/keyFile").delete(); } catch(Exception ignored) {}
+        try { new File(path.getPath()+"/text.txt").delete(); } catch(Exception ignored) {}
+        try { new File(path.getPath()+"/encrypted.txt").delete(); } catch(Exception ignored) {}
+        try { new File(path.getPath()+"/decrypted.txt").delete(); } catch(Exception ignored) {}
     }
 
 }
